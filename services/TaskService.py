@@ -2,6 +2,7 @@ import requests
 
 from constans.constans import BASE_URL
 from typing import Optional
+from integrations.langchain.LangChainService import LangChainProvider
 from integrations.openai.OpenAIService import OpenAIService
 
 
@@ -42,3 +43,9 @@ class TaskService:
           raise Exception("Lack of openai token to process requests")
       
       self.openai_service = OpenAIService(self.openai_token, model)
+
+    def setup_openai_langchain_client(self, model: Optional[str]):
+        if not self.openai_token:
+          raise Exception("Lack of openai token to process requests")
+
+        self.langchain_service = LangChainProvider(self.openai_token, model)

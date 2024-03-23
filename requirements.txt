@@ -1,2 +1,4 @@
 requests
 openai
+langchain-core
+langchain-openai
