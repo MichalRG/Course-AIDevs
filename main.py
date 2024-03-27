@@ -3,6 +3,7 @@ import traceback
 
 from services.AuthorizationService import AuthorizationService
 from services.Tasks.BloggerTask import BloggerTask
+from services.Tasks.EmbeddingTask import EmbeddingTask
 from services.Tasks.HelloApiTask import HelloApiTask
 from services.Tasks.InpromptTask import InpromptTask
 from services.Tasks.LiarTask import LiarTask
@@ -12,7 +13,8 @@ from utils.config_manager import load_env_variables
 authorization_service = AuthorizationService()
 
 local_variables = load_env_variables()
-task_to_perform = local_variables.get("TASK", "helloapi")
+task_to_perform = local_variables.get("TASK", "helloapi").strip()
+client = local_variables.get("CLIENT", 'langchain').strip()
 openai_token = os.getenv("APIKEY-OPENAI") 
 aidevs_token = authorization_service.get_token(task_to_perform)
 
@@ -35,6 +37,9 @@ try:
 
     def create_inprompt_instance_task() -> InpromptTask:
         return InpromptTask(aidevs_token, openai_token)
+    
+    def create_embedding_instance_task() -> EmbeddingTask:
+        return EmbeddingTask(aidevs_token, openai_token, client)
 
 except Exception as ex:
     print(f"ERROR: The problem occured during initalization task {task_to_perform}. Error msg: {ex}")
@@ -51,6 +56,8 @@ match task_to_perform:
         task_instance = create_liar_instance_task()
     case "inprompt":
         task_instance = create_inprompt_instance_task()
+    case "embedding":
+        task_instance = create_embedding_instance_task()
     case _:
         task_instance = create_hello_api_instance_task()
 

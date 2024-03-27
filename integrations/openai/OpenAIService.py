@@ -40,3 +40,9 @@ class OpenAIService:
     )
 
     return response.results
+  
+  def get_embedding(self, input:str) -> List[float]:
+    return self.openai_client.embeddings.create(
+      input=[input],
+      model=self.model
+    ).data[0].embedding
