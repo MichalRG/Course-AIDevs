@@ -8,7 +8,7 @@ class LiarTask(TaskService):
 
 
   def perform_task(self):
-    question = "What is the main god of ancient Orient?"
+    question = "Who is the main god of ancient Orient?"
     question_answer = self.__get_answer_on_question_from_aidevs(question)
 
     print(f"[PROCESSING DETAILS]: answer on question \"{question}\" is: {question_answer}")

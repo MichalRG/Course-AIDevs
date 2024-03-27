@@ -4,6 +4,7 @@ import traceback
 from services.AuthorizationService import AuthorizationService
 from services.Tasks.BloggerTask import BloggerTask
 from services.Tasks.HelloApiTask import HelloApiTask
+from services.Tasks.InpromptTask import InpromptTask
 from services.Tasks.LiarTask import LiarTask
 from services.Tasks.ModerationTask import ModerationTask
 from utils.config_manager import load_env_variables
@@ -32,6 +33,9 @@ try:
     def create_liar_instance_task() -> LiarTask:
         return LiarTask(aidevs_token, openai_token)
 
+    def create_inprompt_instance_task() -> InpromptTask:
+        return InpromptTask(aidevs_token, openai_token)
+
 except Exception as ex:
     print(f"ERROR: The problem occured during initalization task {task_to_perform}. Error msg: {ex}")
 
@@ -45,6 +49,8 @@ match task_to_perform:
         task_instance = create_moderation_instance_task()
     case "liar":
         task_instance = create_liar_instance_task()
+    case "inprompt":
+        task_instance = create_inprompt_instance_task()
     case _:
         task_instance = create_hello_api_instance_task()
 
