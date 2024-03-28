@@ -8,6 +8,7 @@ from services.Tasks.HelloApiTask import HelloApiTask
 from services.Tasks.InpromptTask import InpromptTask
 from services.Tasks.LiarTask import LiarTask
 from services.Tasks.ModerationTask import ModerationTask
+from services.Tasks.WhisperTask import WhisperTask
 from utils.config_manager import load_env_variables
 
 authorization_service = AuthorizationService()
@@ -40,6 +41,9 @@ try:
     
     def create_embedding_instance_task() -> EmbeddingTask:
         return EmbeddingTask(aidevs_token, openai_token, client)
+    
+    def create_whisper_instance_task() -> WhisperTask:
+        return WhisperTask(aidevs_token, openai_token, client)
 
 except Exception as ex:
     print(f"ERROR: The problem occured during initalization task {task_to_perform}. Error msg: {ex}")
@@ -58,6 +62,8 @@ match task_to_perform:
         task_instance = create_inprompt_instance_task()
     case "embedding":
         task_instance = create_embedding_instance_task()
+    case "whisper":
+        task_instance = create_whisper_instance_task()
     case _:
         task_instance = create_hello_api_instance_task()
 

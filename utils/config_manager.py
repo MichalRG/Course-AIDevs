@@ -1,4 +1,3 @@
-from pprint import pprint
 from typing import Dict
 
 
@@ -20,5 +19,5 @@ def load_env_variables(env_name_file = ".env") -> Dict[str, str]:
       return variables_dict
 
   except FileNotFoundError:
-    pprint(f"ERROR: {env_name_file} not found")
+    print(f"ERROR: {env_name_file} not found")
     return {}

@@ -14,6 +14,7 @@ class TaskService:
         self.base_answer_url = f"{BASE_URL}/answer"
         self.task_data = None
         self.answer = None
+        self.base_client = None
 
     def get_task(self):
         response = requests.get(f"{self.base_task_url}/{self.aidevs_token}")
@@ -49,3 +50,13 @@ class TaskService:
           raise Exception("Lack of openai token to process requests")
 
         self.langchain_service = LangChainProvider(self.openai_token, model)
+
+    def get_method_adjusted_to_client(self, model_name: str, method_name: str):
+        if self.base_client == "openai":
+            self.setup_openai_client(model_name)
+        
+            return getattr(self.openai_service, method_name)
+        else:
+            self.setup_openai_langchain_client(model_name)
+
+            return getattr(self.langchain_service, method_name)

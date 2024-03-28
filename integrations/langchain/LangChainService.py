@@ -26,3 +26,7 @@ class LangChainProvider:
 
   def get_embedding(self, input_text:str) -> List[float]:
     return self.embeddings.embed_documents([input_text])[0]
+  
+  def get_translation(self, mp3_file: bytes):
+    raise Exception("Lack of implementation for python langchain whipser. I only found Community Solution #meh and js solution 💣")    
+
