@@ -4,6 +4,7 @@ import traceback
 from services.AuthorizationService import AuthorizationService
 from services.Tasks.BloggerTask import BloggerTask
 from services.Tasks.EmbeddingTask import EmbeddingTask
+from services.Tasks.FunctionTask import FunctionTask
 from services.Tasks.HelloApiTask import HelloApiTask
 from services.Tasks.InpromptTask import InpromptTask
 from services.Tasks.LiarTask import LiarTask
@@ -44,6 +45,9 @@ try:
     
     def create_whisper_instance_task() -> WhisperTask:
         return WhisperTask(aidevs_token, openai_token, client)
+    
+    def create_function_instance_task() -> FunctionTask:
+        return FunctionTask(aidevs_token, openai_token)
 
 except Exception as ex:
     print(f"ERROR: The problem occured during initalization task {task_to_perform}. Error msg: {ex}")
@@ -64,6 +68,8 @@ match task_to_perform:
         task_instance = create_embedding_instance_task()
     case "whisper":
         task_instance = create_whisper_instance_task()
+    case "functions":
+        task_instance = create_function_instance_task()
     case _:
         task_instance = create_hello_api_instance_task()
 
