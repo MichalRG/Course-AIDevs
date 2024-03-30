@@ -9,6 +9,7 @@ from services.Tasks.HelloApiTask import HelloApiTask
 from services.Tasks.InpromptTask import InpromptTask
 from services.Tasks.LiarTask import LiarTask
 from services.Tasks.ModerationTask import ModerationTask
+from services.Tasks.RodoTask import RodoTask
 from services.Tasks.WhisperTask import WhisperTask
 from utils.config_manager import load_env_variables
 
@@ -48,6 +49,9 @@ try:
     
     def create_function_instance_task() -> FunctionTask:
         return FunctionTask(aidevs_token, openai_token)
+    
+    def create_rodo_instance_task() -> RodoTask:
+        return RodoTask(aidevs_token, openai_token)
 
 except Exception as ex:
     print(f"ERROR: The problem occured during initalization task {task_to_perform}. Error msg: {ex}")
@@ -70,6 +74,8 @@ match task_to_perform:
         task_instance = create_whisper_instance_task()
     case "functions":
         task_instance = create_function_instance_task()
+    case "rodo":
+        task_instance = create_rodo_instance_task()
     case _:
         task_instance = create_hello_api_instance_task()
 
