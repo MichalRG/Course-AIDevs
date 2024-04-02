@@ -37,7 +37,7 @@ class TaskService:
         if response.status_code == 200:
             print(f"[RESULT OF TASK]: Response msg: {response.json()}")
         else:
-            print(f"ERROR: Error with processing answer request. Message: {response.json().get('msg')}")
+            print(f"ERROR: Error with processing answer request: {self.answer}. Message: {response.json().get('msg')}")
 
     def setup_openai_client(self, model: str):
       if not self.openai_token:
