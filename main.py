@@ -12,6 +12,7 @@ from services.Tasks.ModerationTask import ModerationTask
 from services.Tasks.RodoTask import RodoTask
 from services.Tasks.ScraperTask import ScraperTask
 from services.Tasks.WhisperTask import WhisperTask
+from services.Tasks.WhoAmITask import WhoAmITask
 from utils.config_manager import load_env_variables
 
 authorization_service = AuthorizationService()
@@ -56,6 +57,9 @@ try:
     
     def create_scraper_instance_task() -> ScraperTask:
         return ScraperTask(aidevs_token, openai_token, client)
+    
+    def create_whoami_instance_task() -> WhoAmITask:
+        return WhoAmITask(aidevs_token, openai_token, client)
 
 except Exception as ex:
     print(f"ERROR: The problem occured during initalization task {task_to_perform}. Error msg: {ex}")
@@ -82,6 +86,8 @@ match task_to_perform:
         task_instance = create_rodo_instance_task()
     case "scraper":
         task_instance = create_scraper_instance_task()
+    case "whoami":
+        task_instance = create_whoami_instance_task()
     case _:
         task_instance = create_hello_api_instance_task()
 

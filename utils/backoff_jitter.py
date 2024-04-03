@@ -3,7 +3,7 @@ import time
 import requests
 
 
-def perfrom_backof_jitter_request(url: str, max_attempts: int, base_delay=1, max_delay=32):
+def perfrom_backof_jitter_request(url: str, max_attempts: int, base_delay=1, max_delay=32) -> requests.Response | None:
     attempt = 0
     session = requests.Session()
     session.headers.update({
@@ -14,7 +14,7 @@ def perfrom_backof_jitter_request(url: str, max_attempts: int, base_delay=1, max
       try:
         response = session.get(url, timeout=30)
         if response.status_code == 200:
-          return response.content
+          return response
         else:
           print(f"[BACKOFF JITTER] Error ({response.status_code}) message: {response.text}")
       except requests.exceptions.Timeout:

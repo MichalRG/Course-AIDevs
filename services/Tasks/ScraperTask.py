@@ -20,7 +20,7 @@ class ScraperTask(TaskService):
       print("[PROCESSING DETAILS]: Fetching data has failed :(")
       raise Exception(f"Lack of data from {input_txt_link}")
     
-    self.answer = get_answer(f"Answer question briefly and precisely just in few words, use your knowledge and context. The answer generate in polish language! Context### {data}", question_to_answer)
+    self.answer = get_answer(f"Answer question briefly and precisely just in few words, use your knowledge and context. The answer generate in polish language! Context### {data.content}", question_to_answer)
 
 
   

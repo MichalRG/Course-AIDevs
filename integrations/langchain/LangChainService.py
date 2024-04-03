@@ -2,6 +2,7 @@ from typing import List
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from langchain_core.messages import HumanMessage, SystemMessage
 
 
 class LangChainProvider:
@@ -14,10 +15,12 @@ class LangChainProvider:
         self.llm_langchain_client = ChatOpenAI(openai_api_key=key)
 
   def perform_request(self, system_message: str, user_message: str) -> str:
-    prompt = ChatPromptTemplate.from_messages([
-      ("system", system_message),
-      ("user", "{input}")
-    ])
+    messages = [
+      SystemMessage(content=system_message),
+      HumanMessage(content=user_message)
+    ]
+
+    prompt = ChatPromptTemplate.from_messages(messages)
     parser = StrOutputParser()
     
     chain = prompt | self.llm_langchain_client | parser

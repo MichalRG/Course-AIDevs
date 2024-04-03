@@ -4,6 +4,7 @@ from constans.constans import BASE_URL
 from typing import Optional
 from integrations.langchain.LangChainService import LangChainProvider
 from integrations.openai.OpenAIService import OpenAIService
+from utils.backoff_jitter import perfrom_backof_jitter_request
 
 
 class TaskService:
@@ -17,13 +18,13 @@ class TaskService:
         self.base_client = None
 
     def get_task(self):
-        response = requests.get(f"{self.base_task_url}/{self.aidevs_token}")
+        response = perfrom_backof_jitter_request(f"{self.base_task_url}/{self.aidevs_token}", 6)
 
-        if response.status_code == 200:
+        if response and response.status_code == 200:
             print(f"[TASK DETAILS]: Task json response: {response.json()}")
             self.task_data = response.json()
         else:
-            print(f"ERROR: Problem with fetching task. Message: {response.json().get('msg')}")
+            print(f"ERROR: Problem with fetching task. Message: {response}")
 
     def send_answer(self):
         url = f"{self.base_answer_url}/{self.aidevs_token}"

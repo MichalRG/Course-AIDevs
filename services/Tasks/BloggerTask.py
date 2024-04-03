@@ -25,7 +25,7 @@ class BloggerTask(TaskService):
     ]"""
     user_prompt_message = f"{chapters}"
     
-    response = self.openai_service.send_message_to_text_model(
+    response = self.openai_service.perform_request(
       system_message=system_message, 
       user_message=user_prompt_message
     )
