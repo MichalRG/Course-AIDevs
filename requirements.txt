@@ -3,3 +3,6 @@ openai
 langchain-core
 langchain-openai
 beautifulsoup4
+sentence-transformers
+numpy
+qdrant_client 
