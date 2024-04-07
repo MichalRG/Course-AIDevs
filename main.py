@@ -9,6 +9,7 @@ from services.Tasks.HelloApiTask import HelloApiTask
 from services.Tasks.InpromptTask import InpromptTask
 from services.Tasks.LiarTask import LiarTask
 from services.Tasks.ModerationTask import ModerationTask
+from services.Tasks.PeopleTask import PeopleTask
 from services.Tasks.RodoTask import RodoTask
 from services.Tasks.SarchTask import SearchTask
 from services.Tasks.ScraperTask import ScraperTask
@@ -64,6 +65,9 @@ try:
 
     def create_search_instance_task() -> SearchTask:
         return SearchTask(aidevs_token, openai_token)
+    
+    def create_people_instance_task() -> PeopleTask:
+        return PeopleTask(aidevs_token, openai_token, client)
 
 except Exception as ex:
     print(f"ERROR: The problem occured during initalization task {task_to_perform}. Error msg: {ex}")
@@ -94,6 +98,8 @@ match task_to_perform:
         task_instance = create_whoami_instance_task()
     case "search":
         task_instance = create_search_instance_task()
+    case "people":
+        task_instance = create_people_instance_task()
     case _:
         task_instance = create_hello_api_instance_task()
 

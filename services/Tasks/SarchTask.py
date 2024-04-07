@@ -7,6 +7,8 @@ from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams, PointStruct, UpsertOperation, PointsList
 
+from utils.requests_helper import get_json_data_from_url
+
 class SearchTask(TaskService):
   def __init__(self, aidevs_token: str, openai_token: str | None = None, collection_name = "unknown_collection"):
     super().__init__(aidevs_token, openai_token)
@@ -15,7 +17,7 @@ class SearchTask(TaskService):
 
   def perform_task(self):
     self.qdrant_service.delete_collection()
-    data = self.__get_newsleter_dataset()
+    data = get_json_data_from_url("https://unknow.news/archiwum_aidevs.json")
     question = self.task_data.get("question")
 
     self.__prepare_database_and_data(data)
@@ -50,11 +52,6 @@ class SearchTask(TaskService):
         "payload": article
       } for idx, (embedding, article) in enumerate(zip(embeddings, data), 1)
     ]
-
-  def __get_newsleter_dataset(self) -> list[dict[str,str]]:
-    return json.loads(requests.get("https://unknow.news/archiwum_aidevs.json").content)
-
-
 
 
 ##########################################################################################

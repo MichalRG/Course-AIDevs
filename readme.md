@@ -46,3 +46,5 @@ docker rm -f milvus_in_memory
 ```shell
 docker logs milvus
 ```
+
+2. People task requires to refactor token is valid only 2 minutes and creation of VDB takes too long - currently u have to create DB and then run script again with commented lines which genrates embeddings. Embedding generation takes like 5 minutes so it has to be done before running task. It requires to refactor, generating db should be run in config scirpt or sth like that.
