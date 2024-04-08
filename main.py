@@ -7,6 +7,7 @@ from services.Tasks.EmbeddingTask import EmbeddingTask
 from services.Tasks.FunctionTask import FunctionTask
 from services.Tasks.HelloApiTask import HelloApiTask
 from services.Tasks.InpromptTask import InpromptTask
+from services.Tasks.KnowledgeTask import KnowledgeTask
 from services.Tasks.LiarTask import LiarTask
 from services.Tasks.ModerationTask import ModerationTask
 from services.Tasks.PeopleTask import PeopleTask
@@ -68,6 +69,9 @@ try:
     
     def create_people_instance_task() -> PeopleTask:
         return PeopleTask(aidevs_token, openai_token, client)
+    
+    def create_knowledge_instance_task() -> KnowledgeTask:
+        return KnowledgeTask(aidevs_token, openai_token, client)
 
 except Exception as ex:
     print(f"ERROR: The problem occured during initalization task {task_to_perform}. Error msg: {ex}")
@@ -100,6 +104,8 @@ match task_to_perform:
         task_instance = create_search_instance_task()
     case "people":
         task_instance = create_people_instance_task()
+    case "knowledge":
+        task_instance = create_knowledge_instance_task()
     case _:
         task_instance = create_hello_api_instance_task()
 
