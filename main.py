@@ -14,6 +14,7 @@ from services.Tasks.PeopleTask import PeopleTask
 from services.Tasks.RodoTask import RodoTask
 from services.Tasks.SarchTask import SearchTask
 from services.Tasks.ScraperTask import ScraperTask
+from services.Tasks.ToolsTask import ToolsTask
 from services.Tasks.WhisperTask import WhisperTask
 from services.Tasks.WhoAmITask import WhoAmITask
 from utils.config_manager import load_env_variables
@@ -72,6 +73,9 @@ try:
     
     def create_knowledge_instance_task() -> KnowledgeTask:
         return KnowledgeTask(aidevs_token, openai_token, client)
+    
+    def create_tools_instance_task() -> ToolsTask:
+        return ToolsTask(aidevs_token, openai_token, client)
 
 except Exception as ex:
     print(f"ERROR: The problem occured during initalization task {task_to_perform}. Error msg: {ex}")
@@ -106,6 +110,8 @@ match task_to_perform:
         task_instance = create_people_instance_task()
     case "knowledge":
         task_instance = create_knowledge_instance_task()
+    case "tools":
+        task_instance = create_tools_instance_task()
     case _:
         task_instance = create_hello_api_instance_task()
 
