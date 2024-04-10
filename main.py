@@ -5,6 +5,7 @@ from services.AuthorizationService import AuthorizationService
 from services.Tasks.BloggerTask import BloggerTask
 from services.Tasks.EmbeddingTask import EmbeddingTask
 from services.Tasks.FunctionTask import FunctionTask
+from services.Tasks.GnomeTask import GnomeTask
 from services.Tasks.HelloApiTask import HelloApiTask
 from services.Tasks.InpromptTask import InpromptTask
 from services.Tasks.KnowledgeTask import KnowledgeTask
@@ -76,6 +77,9 @@ try:
     
     def create_tools_instance_task() -> ToolsTask:
         return ToolsTask(aidevs_token, openai_token, client)
+    
+    def create_gnome_instnace_task() -> GnomeTask:
+        return GnomeTask(aidevs_token, openai_token, client)
 
 except Exception as ex:
     print(f"ERROR: The problem occured during initalization task {task_to_perform}. Error msg: {ex}")
@@ -112,6 +116,8 @@ match task_to_perform:
         task_instance = create_knowledge_instance_task()
     case "tools":
         task_instance = create_tools_instance_task()
+    case "gnome":
+        task_instance = create_gnome_instnace_task()
     case _:
         task_instance = create_hello_api_instance_task()
 
