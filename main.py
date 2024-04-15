@@ -10,6 +10,7 @@ from services.Tasks.HelloApiTask import HelloApiTask
 from services.Tasks.InpromptTask import InpromptTask
 from services.Tasks.KnowledgeTask import KnowledgeTask
 from services.Tasks.LiarTask import LiarTask
+from services.Tasks.MemeTask import MemeTask
 from services.Tasks.ModerationTask import ModerationTask
 from services.Tasks.PeopleTask import PeopleTask
 from services.Tasks.RodoTask import RodoTask
@@ -80,6 +81,9 @@ try:
     
     def create_gnome_instnace_task() -> GnomeTask:
         return GnomeTask(aidevs_token, openai_token, client)
+    
+    def create_meme_instance_task() -> MemeTask:
+        return MemeTask(aidevs_token, openai_token)
 
 except Exception as ex:
     print(f"ERROR: The problem occured during initalization task {task_to_perform}. Error msg: {ex}")
@@ -118,6 +122,8 @@ match task_to_perform:
         task_instance = create_tools_instance_task()
     case "gnome":
         task_instance = create_gnome_instnace_task()
+    case "meme":
+        task_instance = create_meme_instance_task()
     case _:
         task_instance = create_hello_api_instance_task()
 
@@ -126,5 +132,6 @@ try:
     task_instance.perform_task()
     task_instance.send_answer()
 except Exception as ex:
+    
     print(f"ERROR: The problem occured during processing task {task_to_perform}. Error msg: {ex}")
     print(traceback.print_tb(ex.__traceback__))
