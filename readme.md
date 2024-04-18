@@ -62,3 +62,5 @@ docker logs milvus
   }
 }
 ```
+
+5. optimaldb - [RESULT OF TASK]: Response msg: {'code': 0, 'msg': 'OK', 'note': 'CORRECT', 'questions': '\n1. Jaka jest ulubiona gra Zygfryda?\n2. W jakim sklepie pracuje Stefan?\n3. Jaki jest ulubiony film Zygfryda?\n4. Jaki taniec weselny wybrał Zygfryd na swoim weselu?\n5. Co studiuje Ania?\n6. Jak nazywa się\xa0inspiracja fitness Ani? \n', 'answers': '1. Ulubiona gra Zygfryda to "Terra Mystica".\n2. Stefan pracuje w sklepie Żabka.\n3. Ulubiony film Zygfryda to "Matrix".\n4. Zygfryd wybrał tango jako taniec weselny.\n5. Ania studiuje prawo.\n6. Inspiracją fitness Ani jest Jennifer Lopez (J.Lo).'}
