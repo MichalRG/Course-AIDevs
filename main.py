@@ -10,6 +10,7 @@ from services.Tasks.HelloApiTask import HelloApiTask
 from services.Tasks.InpromptTask import InpromptTask
 from services.Tasks.KnowledgeTask import KnowledgeTask
 from services.Tasks.LiarTask import LiarTask
+from services.Tasks.Md2htmlTask import Md2htmlTask
 from services.Tasks.MemeTask import MemeTask
 from services.Tasks.ModerationTask import ModerationTask
 from services.Tasks.OptimaldbTask import OptimaldbTask
@@ -88,6 +89,9 @@ try:
     
     def create_optimaldb_instance_task() -> OptimaldbTask:
         return OptimaldbTask(aidevs_token, openai_token, client)
+    
+    def create_md2html_instance_task() -> Md2htmlTask:
+        return Md2htmlTask(aidevs_token, openai_token)
 
 except Exception as ex:
     print(f"ERROR: The problem occured during initalization task {task_to_perform}. Error msg: {ex}")
@@ -130,6 +134,8 @@ match task_to_perform:
         task_instance = create_meme_instance_task()
     case "optimaldb":
         task_instance = create_optimaldb_instance_task()
+    case "md2html":
+        task_instance = create_md2html_instance_task()
     case _:
         task_instance = create_hello_api_instance_task() 
 

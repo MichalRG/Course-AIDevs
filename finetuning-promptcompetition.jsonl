@@ -1,0 +1,19 @@
+{"prompt": "# Nagłówek1", "completion": "<h1>Nagłówek1</h1>"}
+{"prompt": "### Nagłówek3", "completion": "<h3>Nagłówek3</h3>"}
+{"prompt": "**pogrubienie**", "completion": "<span class=\"bold\">pogrubienie</span>"}
+{"prompt": "*kursywa*", "completion": "<em>kursywa</em>"}
+{"prompt": "[AI Devs 3.0](https://aidevs.pl)", "completion": "<a href=\"https://aidevs.pl\">AI Devs 3.0</a>"}
+{"prompt": "_podkreślenie_", "completion": "<u>podkreślenie</u>"}
+{"prompt": "1. Element listy\n2. Kolejny elementy", "completion": "<ol><li>Element listy</li><li>Kolejny element</li></ol>"}
+{"prompt": "![Alt text](/path/to/img.jpg)\n", "completion": "<img src='/path/to/img.jpg' alt='Alt text'>\n"}
+{"prompt": "> Blockquote\n", "completion": "<blockquote>Blockquote</blockquote>\n"}
+{"prompt": "1. First item\n2. Second item\n", "completion": "<ol><li>First item</li><li>Second item</li></ol>\n"}
+{"prompt": "- Unordered list item\n", "completion": "<ul><li>Unordered list item</li></ul>\n"}
+{"prompt": "---\n", "completion": "<hr>\n"}
+{"prompt": "`Inline code` is shown with backticks.\n", "completion": "<code>Inline code</code> is shown with backticks.\n"}
+{"prompt": "This is a paragraph with a [link](http://example.com).\n", "completion": "This is a paragraph with a <a href='http://example.com'>link</a>.\n"}
+{"prompt": "Using **bold** and *italic* text styles in one sentence.\n", "completion": "Using <span class=\"bold\">bold</span> and <em>italic</em> text styles in one sentence.\n"}
+{"prompt": "**Nested _Markdown_ syntax** is tricky.\n", "completion": "<span class=\"bold\">Nested <em>Markdown</em> syntax</span> is tricky.\n"}
+{"prompt": "[Click here](https://google.com) to visit Google.\n", "completion": "<a href='https://google.com'>Click here</a> to visit Google.\n"}
+{"prompt": "Format text: *italic*, **bold**, ~~strikethrough~~.\n", "completion": "Format text: <em>italic</em>, <span class=\"bold\">bold</span>, <del>strikethrough</del>.\n"}
+{"prompt": "Include an image with Markdown:\n![Logo](https://example.com/logo.png)\n", "completion": "<img src='https://example.com/logo.png' alt='Logo'>\n"}
